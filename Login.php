@@ -4,9 +4,10 @@ require_once("PageAssignment.php");
 
 require_once("playlistDataAccess.php");
 
+require_once("verifyPresident.php");
+
 $page = new Page("90FM Form");
 
-require
 
 $page->addHeadItem(
 "<link rel='stylesheet' type='text/css' href='assgn2.css'>"
@@ -17,43 +18,12 @@ $page->addHeadItem(
 <h3>Your Only Alternative</h3>
 ");
 
-$page->addBodyItem("<p>Form</p>
-<form method='GET' action='Login.php'>
-<br />
-Title:  <input type='text' name='title'><br />
-Artist:  <input type='text' name='artist'><br />
-Album:  <input type='text' name='album'><br />
-Label:  <input type='text' name='label'><br />
-<input type='submit' name='submit'>
-</form>
+$page->addBodyItem("<p>Login</p>\n
+<form method=\"post\" action=\"PageGo.php\">\n
+Username:  <input type=\"text\" name=\"userName\"><br />\n
+Password:  <input type=\"password\" name=\"password\"><br />\n
+<input type=\"submit\" name=\"submit\" value='Login'>");
 
-<img src = '../webfiles/90FMLogo.png'
-              >"
-					);
-
-
-
-
-if(isset($_GET['title'])&&isset($_GET['artist'])&&isset($_GET['album'])&&isset($_GET['label']))
-{
-	$title = $_GET['title'];
-	$artist = $_GET['artist'];
-	$album = $_GET['album'];
-	$label = $_GET['label'];
-	addToQueue($title,$artist,$album,$label);
-}
-
-
-
-$page->addBodyItem("<p name='list'>");
-for($i = 0; $i < count($cars); $i++){
-	$page->addBodyItem("<br>");
-	for($j = 0; $j < count($cars[$i]); $j++){
-		$page->addBodyItem($cars[$i][$j]."<br>");
-	}
-	
-}
-$page->addBodyItem("</p>");
 $page ->addBottomItem(
 "<a href='#'>Private Policy</a>
   <a href='#'>Help</a>

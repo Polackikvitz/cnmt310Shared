@@ -3,10 +3,9 @@
 function readPlayView(){
 	$fh = @fopen("../webfiles/playQueue.txt","r");
 	$queue = array(array());
-	$lineNum = 0;
 
 	if(is_resource($fh)){
-		while($line = fgets($fh)&& $lineNum < 1){
+		while($line = fgets($fh)){
 			$array1 = array();
 			$array2 = array();
 			$creds = explode("|", $line);
@@ -14,13 +13,9 @@ function readPlayView(){
 			$array2[] = rtrim($creds[1]);
 			$array2[] = rtrim($creds[2]);
 			$array2[] = rtrim($creds[3]);
-			$queue[] = array2;
+            $array2[] = rtrim($creds[4]);
+			$queue[] = $array2;
 			
-			//$queue[$lineNum][0] = rtrim($creds[0]);
-			//$queue[$lineNum][1] = rtrim($creds[1]);
-			//$queue[$lineNum][2] = rtrim($creds[2]);
-			//$queue[$lineNum][3] = rtrim($creds[3]);
-			$lineNum++;
 		}
 	}
 	return $queue;
@@ -28,7 +23,7 @@ function readPlayView(){
 
 function addToQueue($title,$artist,$album,$label){
 	$fh = @fopen("../webfiles/playQueue.txt","a");
-	$toWrite = $title."|".$artist."|".$album."|".$label.PHP_EOL;
+	$toWrite = $title."|".$artist."|".$album."|".$label."|".date("Y-m-d H:i:s").PHP_EOL;
 	if(is_resource($fh)){
 		fwrite($fh,$toWrite);
 	}
