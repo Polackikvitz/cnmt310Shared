@@ -26,9 +26,7 @@ Album:  <input type='text' name='album'><br />
 Label:  <input type='text' name='label'><br />
 <input type='submit' name='submit'>
 </form>
-
-<img src = '../webfiles/90FMLogo.png'
-              >"
+<img src='90FMLogo.png'>"
 					);
 
 
@@ -43,19 +41,15 @@ if(isset($_GET['title'])&&isset($_GET['artist'])&&isset($_GET['album'])&&isset($
 	addToQueue($title,$artist,$album,$label);
 }
 
-$cars = array
-  (
-  array("Volvo",22,18),
-  array("BMW",15,13),
-  array("Saab",5,2),
-  array("Land Rover",17,15)
-  );
+$arrayListOf = readPlayView();
+
+
 
 $page->addBodyItem("<p name='list'>");
-for($i = 0; $i < count($cars); $i++){
+for($i = count($arrayListOf)-1; $i > 0; $i--){
 	$page->addBodyItem("<br>");
-	for($j = 0; $j < count($cars[$i]); $j++){
-		$page->addBodyItem($cars[$i][$j]."<br>");
+	for($j = 0; $j < count($arrayListOf[$i]); $j++){
+		$page->addBodyItem($arrayListOf[$i][$j]."<br>");
 	}
 	
 }
