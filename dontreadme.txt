@@ -1,1 +1,1 @@
-Can I push? Fuck no... Maybe I can
+Fuck
