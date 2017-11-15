@@ -1,29 +1,52 @@
-delimiter //
--- Drop procedure if exists `playEntry`//
-Create Procedure playEntry
-	(IN songName varchar(255),
-    IN albumnName varchar(255),
-    IN artistName varchar(255),
-    IN labelName varchar(255),
-    IN playTime datetime,
-    IN djID varchar(255))
-    Begin
-	With subq as(
-		Select song.id as songID, stack.id as stackID, 
-        From  song 
-        Join albumn
-        On song.albumnID = albumn.id
-        Join artist
-        On song.artistID = artist.id
-        Join label
-        On albumn.labelID = label.id
-        Where song.name = titleName
-        And albumn.name = albumnName
-        And artist.name = artistName
-        And label.name = labelName)
-	Select * From subq;
-    Insert Into played (songID, playTime, djID, stackID)
-    Values (subq.songID, playTime, djID, subq.stackID);
-	End//
-delimiter ;
-        
+Set songName = '';
+Set albumnName = '';
+Set artistName = '' ;
+Set labelName = '';
+Set playTime = now();
+Set djsID = '';
+
+-- if exists song
+Select *
+	From  song 
+	Join albumn
+	On song.albumnID = albumn.id
+	Join artist
+	On song.artistID = artist.id
+	Join label
+	On albumn.labelID = label.id
+	Where song.name = titleName
+	And albumn.name = albumnName
+	And artist.name = artistName
+	And label.name = labelName;
+-- else
+	-- if exists artist
+    Select *
+		From artist
+		Where artist.name = artistName;
+    -- else add artist
+    Insert Into artist(name) Values (artistName);
+	-- if exists albumn
+    Select *
+		From albumn
+		Join label
+		On albumn.labelID = label.id
+		Where albumn.name = albumnName
+		And label.name = labelName;
+    -- else 
+		-- if exists label
+			Select *
+			From label
+			Where label.name = labelName;
+                    -- else add label
+        Insert Into label(name) Values (labelName);
+	-- add albumn
+    set albumnLabelID = 0;
+    Insert Into albumn(name, labelID) Values (albumnName, albumnLabelID);
+-- add song
+Set songArtistID = 0;
+Set songAlbumnID = 0;
+Insert Into song(title, artistID, albumnID)  Values (songName, songArtistID, songAlbumnID);
+
+-- insert into playlist
+Set playStackID = 0;
+Insert Into played(songID, time, stackID, djID) Values(songName, playTime, playStackID, djsID);
