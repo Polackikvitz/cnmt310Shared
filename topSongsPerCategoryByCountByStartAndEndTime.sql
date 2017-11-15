@@ -1,5 +1,5 @@
 delimiter //
--- Drop procedure if exists `playEntry`//
+Drop procedure if exists `topSongs`//
 Create Procedure topSongs
 	(In startTime datetime,
     In endTime datetime,

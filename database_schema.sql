@@ -72,7 +72,7 @@ Add constraint fk_AlbumID Foreign Key (albumnID) references Albumn(id),
 Add constraint fk_ArtistID Foreign Key (artistID) references Artist(id);
 
 Alter Table Albumn
-Add constraint fk_ArtistID Foreign Key (labelID) references Artist(id);
+Add constraint fk_labelID Foreign Key (labelID) references Label(id);
 
 Alter Table Played
 Add constraint fk_SongID Foreign Key (songID) references Song(id),
@@ -80,6 +80,5 @@ Add constraint fk_UserID Foreign Key (djID) references User(id),
 Add constraint fk_StackID Foreign Key (stackID) references Stack(id);
 
 Alter Table User_Profile
-Add constraint fk_UserID Foreign Key (userID) references User(id),
+Add constraint fk_UserID_Profile Foreign Key (userID) references User(id),
 Add constraint fk_PermissionProfileID Foreign Key (permissionID) references Permission_Profile(id);
-

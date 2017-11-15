@@ -1,5 +1,5 @@
 delimiter //
--- Drop procedure if exists `playEntry`//
+Drop procedure if exists `updatePlayedSongTitle` //
 Create Procedure updatePlayedSongTitle
 	(In userID int,
     In currentSongID int,
