@@ -4,7 +4,7 @@ require_once("PageAssignment.php");
 
 require_once("playlistDataAccess.php");
 
-require_once("verifyLogin.php");
+require_once("verifyPresident.php");
 
 $page = new Page("90FM Form");
 
@@ -24,7 +24,7 @@ if(isset($_SESSION['valid'])){
     
     if($_SESSION['valid']==true){
 $page->addBodyItem("<p>Form</p>
-<form method='GET' action='PageGo.php'>
+<form method='POST' action='PageGo.php'>
 <br />
 Title:  <input type='text' name='title'><br />
 Artist:  <input type='text' name='artist'><br />
@@ -38,12 +38,12 @@ Label:  <input type='text' name='label'><br />
 
 
 
-if(isset($_GET['title'])&&isset($_GET['artist'])&&isset($_GET['album'])&&isset($_GET['label']))
+if(isset($_POST['title'])&&isset($_POST['artist'])&&isset($_POST['album'])&&isset($_POST['label']))
 {
-	$title = $_GET['title'];
-	$artist = $_GET['artist'];
-	$album = $_GET['album'];
-	$label = $_GET['label'];
+	$title = $_POST['title'];
+	$artist = $_POST['artist'];
+	$album = $_POST['album'];
+	$label = $_POST['label'];
 	addToQueue($title,$artist,$album,$label);
 }
 
@@ -72,7 +72,12 @@ $page->addBodyItem("<form action=\"Login.php\">
 		<input type=\"submit\" value=\"Login\" />
 		</form>");
 }
+
 $page->addBodyItem("</p>");
+
+$page->addBodyItem("<form action='LinkMusic.php'>
+<input type='submit' value='Current Hour Playlist'/></form> ");
+
 $page ->addBottomItem(
 "<a href='#'>Private Policy</a>
   <a href='#'>Help</a>

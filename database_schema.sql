@@ -1,7 +1,7 @@
 CREATE TABLE Song (
 id int not null auto_increment,
 title varchar(255) not null,
-albumnID int not null,
+albumID int not null,
 artistID int not null,
 
 primary key (id)
@@ -14,7 +14,7 @@ name varchar(255) not null,
 primary key (id)
 );
 
-Create Table Albumn (
+Create Table Album (
 id int not null auto_increment,
 name varchar(255) not null,
 labelID int not null,
@@ -67,11 +67,11 @@ primary key (id)
 );
 
 Alter Table Song
-Add constraint nk_Song Unique Key (title, albumnID, artistID),
-Add constraint fk_AlbumID Foreign Key (albumnID) references Albumn(id),
+Add constraint nk_Song Unique Key (title, albumID, artistID),
+Add constraint fk_AlbumID Foreign Key (AlbumID) references Album(id),
 Add constraint fk_ArtistID Foreign Key (artistID) references Artist(id);
 
-Alter Table Albumn
+Alter Table Album
 Add constraint fk_labelID Foreign Key (labelID) references Label(id);
 
 Alter Table Played
