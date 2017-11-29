@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 drop table if exists artist;
-drop table if exists albumn;
+drop table if exists album;
 drop table if exists forminfo;
 drop table if exists label;
 drop table if exists permission_profile;
