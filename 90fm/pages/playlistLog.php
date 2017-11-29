@@ -1,15 +1,10 @@
 <?php
 
-require_once("common/90fm.php");
+require_once("../common/90fm.php");
 
 $body = "";
 $page = new WWSP("90FM");
-$page->addHeadItem("<link rel='stylesheet' type='text/css' href='css/style.css'>");
-
-
-if(isset($_POST['userName'])&&isset($_POST['password'])){
-    verifyCredentials($_POST['userName'], $_POST['password']);
-}
+$page->addHeadItem("<link rel='stylesheet' type='text/css' href='../css/style.css'>");
 
 $body .= "<p>Form</p>
 	<form method='GET' action='PageGo.php'>
@@ -20,7 +15,7 @@ $body .= "<p>Form</p>
 	Label:  <input type='text' name='label'><br />
 	<input type='submit' name='submit' value='Submit'>
 	</form>
-	<img src='90FMLogo.png'>";
+	<img src='../img/90FMLogo.png'>";
 
 
 if(isset($_GET['title'])&&isset($_GET['artist'])&&isset($_GET['album'])&&isset($_GET['label']))
