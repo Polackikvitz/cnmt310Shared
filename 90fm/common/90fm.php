@@ -1,5 +1,5 @@
 <?php
-require_once("common/Page.php");
+require_once("../common/Page.php");
 
 class WWSP extends Page{
 	private $_top = "";
@@ -27,7 +27,7 @@ class WWSP extends Page{
 		if(!isset($_SESSION['login_user']))
 		{
 			$this->_top .='<h3>Login</h3>';
-			$this->_top .='<form method="POST">';
+			$this->_top .='<form method="POST" action="common/login.php">';
 			$this->_top .='<input type="text" name="uid" placeholder="Username/E-mail" required>';
 			$this->_top .='<input type="password" name="pwd" placeholder="Password" required>';
 			$this->_top .='<button type="submit" name="submit">Login</button>';
@@ -48,9 +48,9 @@ class WWSP extends Page{
 		$this->_top .='<nav>';
 		$this->_top .='<ul>';
 		$this->_top .='<li><a href="prev.php">Previously Played</a></li>';
-		$this->_top .='<li><a href="log.php">Playlist Log</a></li>';
+		$this->_top .='<li><a href="playlistLog.php">Playlist Log</a></li>';
 		$this->_top .='<li><a href="reporting.php">Free-Form Reporting</a></li>';
-		$this->_top .='<li><a href="edit.php">Admin Edit Page</a></li>';
+		$this->_top .='<li><a href="adminEdit.php">Admin Edit Page</a></li>';
 		$this->_top .='</ul>';
 		$this->_top .='</nav>';
 		$this->_top .='</header>';
